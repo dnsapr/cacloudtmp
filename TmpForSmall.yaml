@@ -1,0 +1,45 @@
+formatVersion: 1
+inputs:
+  sizeVM:
+    type: string
+    title: Выбирите SIZE
+    description: Выбор size операционной системы
+    enum:
+      - small
+      - flav
+  installedOS:
+    type: string
+    title: Выбирите ОС
+    description: Выбор операционной системы
+    enum:
+      - ubu22
+      - win22
+  CustSpec:
+    type: string
+    title: CustSpec
+    description: CustSpec
+    enum:
+      - lnx
+      - win
+resources:
+  Cloud_vSphere_Network_1:
+    type: Cloud.vSphere.Network
+    metadata:
+      layoutPosition:
+        - 0
+        - 0
+    properties:
+      networkType: existing
+  Cloud_vSphere_Machine_1:
+    type: Cloud.vSphere.Machine
+    metadata:
+      layoutPosition:
+        - 1
+        - 0
+    properties:
+      flavor: ${input.sizeVM}
+      image: ${input.installedOS}
+      name: ${input.installedOS}
+      customizationSpec: ${input.CustSpec}
+      networks:
+        - network: ${resource.Cloud_vSphere_Network_1.id}

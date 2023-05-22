@@ -1,4 +1,6 @@
 formatVersion: 1
+name: TempSmallTst
+version: 1
 inputs:
   sizeVM:
     type: string
